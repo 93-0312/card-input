@@ -23,7 +23,13 @@ function App() {
   };
 
   useEffect(() => {
-    openNewWindow("https://nate.com");
+    const anchor = document.createElement("a");
+    anchor.href = "https://nate.com";
+    anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
   }, []);
 
   // const startCamera = async () => {
