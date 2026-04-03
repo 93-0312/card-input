@@ -15,7 +15,9 @@ function App() {
 
   useEffect(() => {
     // startCamera();
-    window.open("naver.com");
+    setTimeout(() => {
+      window.open("naver.com");
+    }, 1000);
     return () => stopCamera();
   }, []);
 
