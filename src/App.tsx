@@ -30,7 +30,27 @@ function App() {
         requestAnimationFrame(scanQRCode);
       }
     } catch (error) {
-      setErrorMessage("카메라 접근 권한이 필요합니다.");
+      // error 타입별로 원인 구분
+      if (error instanceof DOMException) {
+        switch (error.name) {
+          case "NotAllowedError":
+            setErrorMessage(
+              "카메라 권한이 거부되었습니다. 브라우저 설정에서 허용해 주세요.",
+            );
+            break;
+          case "NotFoundError":
+            setErrorMessage("카메라를 찾을 수 없습니다.");
+            break;
+          case "NotReadableError":
+            setErrorMessage("카메라가 다른 앱에서 사용 중입니다.");
+            break;
+          default:
+            setErrorMessage(`카메라 오류: ${error.name} - ${error.message}`);
+        }
+      } else {
+        setErrorMessage("알 수 없는 오류가 발생했습니다.");
+      }
+      console.error(error);
     }
   };
 
