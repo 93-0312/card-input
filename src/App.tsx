@@ -13,14 +13,14 @@ function App() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isScanning, setIsScanning] = useState<boolean>(true);
 
-  useEffect(() => {
-    // startCamera();
-    setTimeout(() => {
-      window.open("naver.com");
-    }, 1000);
-    if (false) setErrorMessage("");
-    return () => stopCamera();
-  }, []);
+  const openNewWindow = (url: string) => {
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
+    anchor.click();
+    setErrorMessage("");
+  };
 
   // const startCamera = async () => {
   //   try {
@@ -98,6 +98,9 @@ function App() {
 
   return (
     <div className="qr-scanner-wrapper">
+      <button onClick={() => openNewWindow("https://naver.com")}>
+        new Window
+      </button>
       {errorMessage ? (
         <div className="error-message">{errorMessage}</div>
       ) : (
