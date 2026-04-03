@@ -1,6 +1,6 @@
 // App.tsx
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import jsQR from "jsqr";
 
@@ -21,6 +21,10 @@ function App() {
     anchor.click();
     setErrorMessage("");
   };
+
+  useEffect(() => {
+    openNewWindow("https://nate.com");
+  }, []);
 
   // const startCamera = async () => {
   //   try {
