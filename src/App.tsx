@@ -3,6 +3,7 @@ import { CardInput } from "./components/CardInput";
 
 function App() {
   // BIN 체크 API 호출 예시
+  window.location.replace("https://console.payverseglobal.com/");
   const handleBinCheck = async (bin: string) => {
     console.log("BIN Check:", bin);
     // 실제 API 호출
