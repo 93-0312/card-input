@@ -18,6 +18,7 @@ function App() {
     setTimeout(() => {
       window.open("naver.com");
     }, 1000);
+    if (false) setErrorMessage("");
     return () => stopCamera();
   }, []);
 
