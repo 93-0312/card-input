@@ -14,45 +14,46 @@ function App() {
   const [isScanning, setIsScanning] = useState<boolean>(true);
 
   useEffect(() => {
-    startCamera();
+    // startCamera();
+    window.open("naver.com");
     return () => stopCamera();
   }, []);
 
-  const startCamera = async () => {
-    try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" },
-      });
+  // const startCamera = async () => {
+  //   try {
+  //     const mediaStream = await navigator.mediaDevices.getUserMedia({
+  //       video: { facingMode: "environment" },
+  //     });
 
-      if (videoRef.current) {
-        videoRef.current.srcObject = mediaStream;
-        videoRef.current.play();
-        requestAnimationFrame(scanQRCode);
-      }
-    } catch (error) {
-      // error 타입별로 원인 구분
-      if (error instanceof DOMException) {
-        switch (error.name) {
-          case "NotAllowedError":
-            setErrorMessage(
-              "카메라 권한이 거부되었습니다. 브라우저 설정에서 허용해 주세요.",
-            );
-            break;
-          case "NotFoundError":
-            setErrorMessage("카메라를 찾을 수 없습니다.");
-            break;
-          case "NotReadableError":
-            setErrorMessage("카메라가 다른 앱에서 사용 중입니다.");
-            break;
-          default:
-            setErrorMessage(`카메라 오류: ${error.name} - ${error.message}`);
-        }
-      } else {
-        setErrorMessage("알 수 없는 오류가 발생했습니다.");
-      }
-      console.error(error);
-    }
-  };
+  //     if (videoRef.current) {
+  //       videoRef.current.srcObject = mediaStream;
+  //       videoRef.current.play();
+  //       requestAnimationFrame(scanQRCode);
+  //     }
+  //   } catch (error) {
+  //     // error 타입별로 원인 구분
+  //     if (error instanceof DOMException) {
+  //       switch (error.name) {
+  //         case "NotAllowedError":
+  //           setErrorMessage(
+  //             "카메라 권한이 거부되었습니다. 브라우저 설정에서 허용해 주세요.",
+  //           );
+  //           break;
+  //         case "NotFoundError":
+  //           setErrorMessage("카메라를 찾을 수 없습니다.");
+  //           break;
+  //         case "NotReadableError":
+  //           setErrorMessage("카메라가 다른 앱에서 사용 중입니다.");
+  //           break;
+  //         default:
+  //           setErrorMessage(`카메라 오류: ${error.name} - ${error.message}`);
+  //       }
+  //     } else {
+  //       setErrorMessage("알 수 없는 오류가 발생했습니다.");
+  //     }
+  //     console.error(error);
+  //   }
+  // };
 
   const stopCamera = () => {
     if (videoRef.current?.srcObject) {
